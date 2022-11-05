@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container text-center">
+        <div class="row gx-5 mt-5">
+            <div class="col">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header h5">
+                        Loteria
+                    </div>
+                    <div class="card-body">                        
+                        <ul class="list-group list-group-flush">
+                            
+                            {% for n in numeros  %}
+                                {{n.numero}}
+                            {% endfor %}
+                                
+                                    {% for x,y in sorteio.items  %}
+                                        <li class="list-group-item">
+                                            <span class="text-muted">{{ x }} - </span>
+                                        
+                                            {% for z in y %}
+                                                <span class="card-text">
+                                                    {% if x < 10 %} 0{{ z }} {% else %} {{ z }} {% endif %}
+                                                </span>
+                                            {% endfor %}
+                                        </li>
+                                    {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow p-3 mb-5 bg-white rounded p-3 border bg-light">
+                    <div class="card-header h5">
+                        Jogo do bicho
+                    </div>
+                    <div class="card-body">                        
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <span class="card-text"></span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <hr>
+        <div class="row gx-5 mt-5">
+            <div class="col-sm-6">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                <h5 class="card-title">Loteria</h5>
+                
+                {% for jogo in jogos %}
+                    <a href="{% url 'loteria' jogo.id %} " class="btn btn-success">{{ jogo.nome }}</a>
+                {% endfor %}
+                    
+                
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                <h5 class="card-title">Jogo do bicho</h5>
+                
+                <a href="#" class="btn btn-primary">Apostar</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    
